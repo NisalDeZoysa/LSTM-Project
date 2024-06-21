@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 import joblib
 
-# Load model and scaler
+
 model = load_model('LSTM-Stock-Market.keras')
 scaler = joblib.load('stock-scaler.sav')
 

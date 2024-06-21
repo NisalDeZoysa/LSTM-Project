@@ -10,7 +10,7 @@ import joblib
 start = '2013-02-08'
 end = '2018-02-07'
 
-st.title('Stock market Prediction of TESLA stocks')
+st.title('Stock market Prediction of TESLA')
 
 user_input = 'AAPL'
 
