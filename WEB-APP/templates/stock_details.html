@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stock Price Prediction</title>
+    <script>
+      // Function to increment the value
+      function incrementValue(inputId) {
+        var inputField = document.getElementById(inputId);
+        inputField.value = (parseFloat(inputField.value) + 0.1).toFixed(4);
+      }
+
+      // Function to decrement the value
+      function decrementValue(inputId) {
+        var inputField = document.getElementById(inputId);
+        inputField.value = (parseFloat(inputField.value) - 0.1).toFixed(4);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Stock Price Predictor</h1>
+    <p>Please fill in the closing stock prices for the last 50 days.</p>
+
+    <form action="http://127.0.0.1:5000/getprediction" method="POST">
+      <p>Name <input type="text" name="name" /></p>
+      <p>Stock Symbol <input type="text" name="symbol" /></p>
+
+      <div>
+        <h3>Previous 50 Days Closing Prices</h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+          "
+        >
+          <!-- Create 50 input fields for stock prices with default values and increment/decrement buttons -->
+          {% for i in range(1, 51) %}
+          <p>
+            Day {{ i }}:
+            <button type="button" onclick="decrementValue('day{{ i }}')">
+              -
+            </button>
+            <input
+              type="text"
+              id="day{{ i }}"
+              name="day{{ i }}"
+              value="{{ default_values[i-1] }}"
+            />
+            <button type="button" onclick="incrementValue('day{{ i }}')">
+              +
+            </button>
+          </p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <p><input type="submit" value="Get Prediction" /></p>
+    </form>
+  </body>
+</html>
